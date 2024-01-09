@@ -29,6 +29,8 @@ class VaccineRegistrationController extends Controller
         $data = $request->all();
         UserVaccineRegistration::create($data);
 
+        toastr()->success('Vaccine Registration Successful!', 'Congrats');
+
         return redirect()->route('index');
     }
 }
