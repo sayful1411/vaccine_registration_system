@@ -40,9 +40,9 @@ class UserVaccineRegistrationResource extends Resource
                 Tables\Columns\TextColumn::make('status')
                     ->searchable()
                     ->color(fn(string $state): string => match ($state) {
-                        'vaccinated' => 'success',
-                        'scheduled' => 'danger',
-                        'not vaccinated' => 'warning',
+                        'Vaccinated' => 'success',
+                        'Scheduled' => 'danger',
+                        'Not Vaccinated' => 'warning',
                     }),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
