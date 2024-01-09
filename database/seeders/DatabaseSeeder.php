@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\VaccineCenter;
 use Illuminate\Database\Seeder;
+use App\Models\UserVaccineRegistration;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,5 +15,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         VaccineCenter::factory(10)->create();
+        UserVaccineRegistration::factory(50)->create();
     }
 }
