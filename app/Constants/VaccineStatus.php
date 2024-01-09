@@ -10,9 +10,9 @@ class VaccineStatus{
     public static function vaccineStatusList()
     {
         return [
-            self::NOT_VACCINATED => 'Not Vaccinated',
-            self::SCHEDULED => 'Scheduled',
-            self::VACCINATED => 'Vaccinated',
+            self::NOT_VACCINATED => 'not vaccinated',
+            self::SCHEDULED => 'scheduled',
+            self::VACCINATED => 'vaccinated',
         ];
     }
 }
