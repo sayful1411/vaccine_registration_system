@@ -3,15 +3,11 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserVaccineRegistrationResource\Pages;
-use App\Filament\Resources\UserVaccineRegistrationResource\RelationManagers;
 use App\Models\UserVaccineRegistration;
-use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class UserVaccineRegistrationResource extends Resource
 {
@@ -23,21 +19,7 @@ class UserVaccineRegistrationResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('vaccine_center_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('name')
-                    ->required(),
-                Forms\Components\TextInput::make('phone_number')
-                    ->tel()
-                    ->required(),
-                Forms\Components\TextInput::make('nid')
-                    ->required(),
-                Forms\Components\TextInput::make('email')
-                    ->email()
-                    ->required(),
-                Forms\Components\TextInput::make('status')
-                    ->required(),
+                //
             ]);
     }
 
@@ -57,10 +39,10 @@ class UserVaccineRegistrationResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('status')
                     ->searchable()
-                    ->color(fn (string $state): string => match ($state) {
-                        'Vaccinated' => 'success',
-                        'Scheduled' => 'danger',
-                        'Not Vaccinated' => 'warning',
+                    ->color(fn(string $state): string => match ($state) {
+                        'vaccinated' => 'success',
+                        'scheduled' => 'danger',
+                        'not vaccinated' => 'warning',
                     }),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -78,9 +60,7 @@ class UserVaccineRegistrationResource extends Resource
                 //
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                //
             ]);
     }
 
@@ -95,8 +75,11 @@ class UserVaccineRegistrationResource extends Resource
     {
         return [
             'index' => Pages\ListUserVaccineRegistrations::route('/'),
-            'create' => Pages\CreateUserVaccineRegistration::route('/create'),
-            'edit' => Pages\EditUserVaccineRegistration::route('/{record}/edit'),
         ];
+    }
+
+    public static function canCreate(): bool
+    {
+        return false;
     }
 }
