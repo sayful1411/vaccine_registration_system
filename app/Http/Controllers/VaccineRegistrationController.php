@@ -20,7 +20,7 @@ class VaccineRegistrationController extends Controller
         $this->validate($request,[
             'vaccine_center_id' => 'required',
             'name' => 'required|string|max:50',
-            'phone_number' => 'required|numeric|unique:user_vaccine_registrations,phone_number|digits:11',
+            'phone_number' => 'required|string|unique:user_vaccine_registrations,phone_number|max:18',
             'nid' => 'required|numeric|unique:user_vaccine_registrations,nid|digits:10',
             'email' => 'required|email|unique:user_vaccine_registrations,email',
         ]);

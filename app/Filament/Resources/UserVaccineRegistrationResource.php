@@ -39,6 +39,7 @@ class UserVaccineRegistrationResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('status')
                     ->searchable()
+                    ->badge()
                     ->color(fn(string $state): string => match ($state) {
                         'Vaccinated' => 'success',
                         'Scheduled' => 'danger',
