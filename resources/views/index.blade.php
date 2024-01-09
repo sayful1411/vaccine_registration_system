@@ -166,6 +166,56 @@
             background: linear-gradient(-135deg, var(--main-blue), var(--main-purple));
         }
 
+        .select_option {
+            position: relative;
+            width: 100%;
+        }
+
+        .select_option select {
+            display: inline-block;
+            width: 100%;
+            height: 35px;
+            padding: 0px 15px;
+            cursor: pointer;
+            color: #7b7b7b;
+            border: 1px solid #ccc;
+            border-radius: 0;
+            background: #fff;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            transition: all 0.2s ease;
+        }
+
+        .select_option select::-ms-expand {
+            display: none;
+        }
+
+        .select_option select:hover,
+        .select_option select:focus {
+            color: #000;
+            background: #fafafa;
+            border-color: #000;
+            outline: none;
+        }
+
+        .select_arrow {
+            position: absolute;
+            top: calc(50% - 4px);
+            right: 15px;
+            width: 0;
+            height: 0;
+            pointer-events: none;
+            border-width: 8px 5px 0 5px;
+            border-style: solid;
+            border-color: #7b7b7b transparent transparent transparent;
+        }
+
+        .select_option select:hover+.select_arrow,
+        .select_option select:focus+.select_arrow {
+            border-top-color: #000;
+        }
+
         @media only screen and (max-width: 584px) {
             .container {
                 max-width: 100%;
@@ -195,31 +245,81 @@
 <body class="antialiased">
     <div class="container">
         <div class="title">Vaccine Registration</div>
-        <form action="#" method="post">
+
+        <form action="{{ route('vaccine_registration') }}" method="post">
             @csrf
             <div class="user__details">
                 <div class="input__box">
                     <span class="details">Full Name</span>
-                    <input type="text" name="name" placeholder="E.g: John Smith" required>
-                </div>
-                <div class="input__box">
-                    <span class="details">NID</span>
-                    <input type="number" name="nid" placeholder="johnWC98" required>
-                </div>
-                <div class="input__box">
-                    <span class="details">Email</span>
-                    <input type="email" name="email" placeholder="johnsmith@hotmail.com" required>
-                </div>
-                <div class="input__box">
-                    <span class="details">Phone Number</span>
-                    <input type="tel" name="phone" placeholder="+88017********" required>
+                    <input type="text" name="name" placeholder="E.g: John Smith" value="{{ old('name') }}">
+
+                    <div>
+                        @error('name')
+                            <div style="color: #ff0000;margin:2px 0">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
 
+                <div class="input__box">
+                    <span class="details">NID</span>
+                    <input type="number" name="nid" placeholder="5412302578" value="{{ old('nid') }}">
+
+                    <div>
+                        @error('nid')
+                            <div style="color: #ff0000;margin:2px 0">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="input__box">
+                    <span class="details">Email</span>
+                    <input type="email" name="email" placeholder="johnsmith@hotmail.com" value="{{ old('email') }}">
+
+                    <div>
+                        @error('email')
+                            <div style="color: #ff0000;margin:2px 0">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="input__box">
+                    <span class="details">Phone Number</span>
+                    <input type="tel" name="phone_number" placeholder="+88017********" value="{{ old('phone_number') }}">
+
+                    <div>
+                        @error('phone_number')
+                            <div style="color: #ff0000;margin:2px 0">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <div class="input__box">
+                    <span class="details" style="margin-bottom:10px;display:block;font-weight:500;">Vaccine
+                        Center</span>
+                    <div class="input_field select_option">
+                        <select name="vaccine_center_id">
+                            <option value="">Select a center</option>
+                            @foreach ($vaccine_centers as $center)
+                                <option value="{{ $center->id }}" @selected(old('vaccine_center_id') == $center->id)>{{ $center->name }}</option>
+                            @endforeach
+                        </select>
+                        <div class="select_arrow"></div>
+                    </div>
+                </div>
+
+                <div>
+                    @error('vaccine_center_id')
+                        <div style="color: #ff0000;margin:2px 0">{{ $message }}</div>
+                    @enderror
+                </div>
             </div>
             <div class="button">
                 <input type="submit" value="Register">
             </div>
         </form>
+
     </div>
 </body>
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\VaccineRegistrationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [VaccineRegistrationController::class, 'index'])->name('index');
+Route::post('/vaccine-registration', [VaccineRegistrationController::class, 'store'])->name('vaccine_registration');
