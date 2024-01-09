@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Constants\VaccineStatus;
 use App\Models\VaccineCenter;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -21,8 +22,9 @@ class UserVaccineRegistrationFactory extends Factory
             'vaccine_center_id' => fake()->numberBetween(1,10),
             'name' => fake()->name(),
             'phone_number' => fake()->unique()->phoneNumber(),
-            'nid' => fake()->unique()->randomNumber(10),
+            'nid' => fake()->unique()->numberBetween(1000000000,2000000000),
             'email' => fake()->unique()->safeEmail(),
+            'status' => fake()->randomElement(VaccineStatus::vaccineStatusList())
         ];
     }
 }
