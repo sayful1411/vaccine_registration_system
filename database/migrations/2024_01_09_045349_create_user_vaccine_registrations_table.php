@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('status')->default(VaccineStatus::NOT_VACCINATED);
             $table->timestamps();
+            $table->timestamp('notification_sent_at')->nullable();
         });
     }
 
