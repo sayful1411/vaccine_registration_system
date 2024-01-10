@@ -13,6 +13,7 @@ This is a vaccine registration site where users can register for vaccines. In th
 > http://127.0.0.1:8000/admin
 
 > email address:  ***admin@test.com***
+
 > password:  ***password***
   
 
