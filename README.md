@@ -7,7 +7,11 @@
 
 This is a vaccine registration site where users can register for vaccines. In this project I used ***task scheduling***. User can register by entering his name, email, NID, phone number and selecting vaccine center. According to the vaccine center limit every person is notified by **9 pm**. In this case, three statuses have been determined for each person. These are: **vaccinated**, **not vaccinated**, **scheduled**
 
-  
+**I also use filament php to see user list in dashboard**
+### Login Info
+> http://127.0.0.1:8000/admin
+> email address:  ***admin@test.com***
+> password:  ***password***
   
 
 # How you setup and run this project -
