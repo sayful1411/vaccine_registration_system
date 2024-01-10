@@ -15,6 +15,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         VaccineCenter::factory(10)->create();
-        UserVaccineRegistration::factory(50)->create();
+        UserVaccineRegistration::factory(500)->create();
     }
 }
