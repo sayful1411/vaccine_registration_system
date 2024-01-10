@@ -18,7 +18,7 @@ class VaccineCenterFactory extends Factory
     {
         return [
             'name' => fake()->unique()->company(),
-            'daily_limit' => fake()->numberBetween(10, 30),
+            'daily_limit' => fake()->numberBetween(5, 7),
         ];
     }
 }
