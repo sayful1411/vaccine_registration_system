@@ -43,17 +43,9 @@ class SendEmailNotifications implements ShouldQueue
                 ->get();
 
             foreach ($notVaccinatedUsers as $user) {
-                $email = $user->email;
                 $vaccineCenter = $user->vaccineCenter->name;
 
-                UserVaccineRegistration::where('email', $email)->update([
-                    'status' => VaccineStatus::SCHEDULED,
-                    'notification_sent_at' => now()
-                ]);
-
-                $mail = new VaccinationScheduledMail($user->name, $vaccineCenter);
-
-                Mail::to($email)->send($mail);
+                NotifyUser::dispatch($user, $vaccineCenter);
             }
         }
 
